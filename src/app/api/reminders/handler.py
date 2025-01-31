@@ -1,16 +1,21 @@
-import app
+from typing import Annotated
+
+from fastapi import Depends
+
+from app.services.reminders import RemindersService
 from src.app.api.reminders.schemas import ReminderRequest, ReminderResponse
+
+service_dependency = Depends(RemindersService)
 
 
 async def post(
     request: ReminderRequest,
+    service: RemindersService = service_dependency,
 ) -> ReminderResponse:
-    return ReminderResponse(
-        id=1,
-        user_phone="1212121",
-        reminder_text="1212121",
-    )
+    return await service.create_reminder(request)
 
 
-async def get() -> list[ReminderResponse]:
-    return ...
+async def get(
+    service: Annotated[RemindersService, Depends()],
+) -> list[ReminderResponse]:
+    return await service.get_reminders()
