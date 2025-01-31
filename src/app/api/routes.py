@@ -7,7 +7,7 @@ from src.app.api.reminders.schemas import ReminderResponse
 
 def setup_routes(app: FastAPI) -> None:
     """Устаовить роуты эндпоинтов."""
-    api_reminders_router = APIRouter(prefix='/reminders', tags=['Reminders'])
+    api_reminders_router = APIRouter(prefix='/api/reminders', tags=['Reminders'])
 
     api_reminders_router.api_route(
         path='/',

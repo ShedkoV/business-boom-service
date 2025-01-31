@@ -1,12 +1,12 @@
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import date
 
 
 class BaseReminder(BaseModel):
 
     user_phone: str
     reminder_text: str
-    reminder_time: datetime
+    reminder_time: date
 
 
 class ReminderRequest(BaseReminder):
